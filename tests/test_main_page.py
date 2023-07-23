@@ -2,7 +2,7 @@ import allure
 import pytest
 
 from pages.main_page import MainPage
-from test_data.data import Titles, Questions
+from test_data.data import Titles
 
 
 class TestMainPage:
