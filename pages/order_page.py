@@ -1,6 +1,5 @@
 import allure
-from selenium.webdriver.common.by import By
-from base.base_object import BaseObject
+from pages.base_page import BaseObject
 from support.assertions import Assertions
 from base.locators import OrderPageLocators as Order
 
@@ -26,11 +25,12 @@ class OrderPage(BaseObject, Assertions):
         self.type(Order.PHONE_NUMBER_FIELD, phone_number)
         self.select_metro(metro)
 
-
     @allure.step('Ввод станции метро')
     def select_metro(self, metro):
         self.type(Order.METRO_FIELD, metro)
-        self.click((By.XPATH, f"//div[contains(text(),'{metro}')]"))
+        method, locator = Order.SELECT_METRO
+        locator = method, locator.format(metro)
+        self.driver.find_element(*locator).click()
 
     @allure.step('Клик на кнопку "Далее"')
     def click_on_next_button(self):
@@ -43,7 +43,9 @@ class OrderPage(BaseObject, Assertions):
     @allure.step('Выбор срока аренды')
     def choose_of_scooter_rental_period(self, period):
         self.click(Order.ORDER_TIME_FIELD)
-        self.click((By.XPATH, f"//div[contains(text(),'{period}')]"))
+        method, locator = Order.RENT_PERIOD
+        locator = method, locator.format(period)
+        self.driver.find_element(*locator).click()
 
     @allure.step('Выбор цвета самоката')
     def set_color_of_scooter(self):
@@ -74,4 +76,7 @@ class OrderPage(BaseObject, Assertions):
 
     @allure.step('Проверка ошибки заполнения поля')
     def check_warning_message(self, text):
-        self.assert_equal(self.get_text((By.XPATH, f".//div[contains(text(),'{text}')]")), text)
+        method, locator = Order.ERROR_MESSAGE
+        locator = method, locator.format(text)
+        expected_text = self.driver.find_element(*locator).text
+        self.assert_equal(expected_text, text)

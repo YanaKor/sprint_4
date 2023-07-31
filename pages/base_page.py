@@ -38,11 +38,10 @@ class BaseObject:
     def go_to_url(self, url):
         self.driver.get(url)
 
-    @allure.step('Получение списка вопросов')
+    @allure.step('Получение списка элементов')
     def get_list_of_elements(self, locator):
         return self.wait.until(ec.presence_of_all_elements_located(locator))
 
     @allure.step('Переход к новой вкладке')
     def switch_to_new_tab(self):
         self.driver.switch_to.window(self.driver.window_handles[-1])
-

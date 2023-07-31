@@ -19,9 +19,11 @@ class OrderPageLocators:
     LAST_NAME_FIELD = (By.XPATH, ".//*[@placeholder='* Фамилия']") # поле заполения фамилии
     ADDRESS_FIELD = (By.XPATH, ".//*[@placeholder='* Адрес: куда привезти заказ']") # поле заполения адреса
     METRO_FIELD = (By.XPATH, ".//*[@placeholder='* Станция метро']") # поле заполения
+    SELECT_METRO = By.XPATH, "//div[contains(text(),'{}')]"
     PHONE_NUMBER_FIELD = (By.XPATH, ".//*[@placeholder='* Телефон: на него позвонит курьер']") # поле заполения номера телефона
     DATE_FIELD = (By.XPATH, ".//*[@placeholder='* Когда привезти самокат']") # поле заполения даты заказа
     ORDER_TIME_FIELD = (By.XPATH, ".//*[@class= 'Dropdown-arrow']") # поле заполения срока заказа
+    RENT_PERIOD = (By.XPATH, ".//div[contains(text(),'{}')]")
     COLOR_OF_SCOOTER_CHECKBOX = (By.XPATH, ".//*[@id='grey']") # чекбокс выбора цвета самоката
     COMMENT_FOR_ORDER_FIELD = (By.XPATH, ".//*[@placeholder='Комментарий для курьера']") # поле заполения комментария к заказу
 
@@ -31,5 +33,5 @@ class OrderPageLocators:
     ORDER_BUTTON = (By.XPATH, ".//button[contains(@class, 'Button_Middle') and text()='Заказать']") # кнопка 'Заказать' в форме
     APPROVE_BUTTON = (By.XPATH, ".//button[contains(@class, 'Button_Middle') and text()='Да']") # подтверждение заказа
 
-
+    ERROR_MESSAGE = By.XPATH, ".//div[contains(text(),'{}')]"
     ORDER_TITLE = (By.XPATH, "//div[contains(@class, 'Order_ModalHeader')]") # информация о статусе заказа

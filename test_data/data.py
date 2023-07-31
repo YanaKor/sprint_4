@@ -1,5 +1,7 @@
 from faker import Faker
 import random
+from datetime import date
+from dataclasses import dataclass
 
 
 class Urls:
@@ -7,17 +9,44 @@ class Urls:
     ORDER_URL = 'https://qa-scooter.praktikum-services.ru/order'
 
 
+@dataclass
 class UserInfo:
-    fake_ru = Faker('ru_Ru')
-    fake_en = Faker('en_US')
-    NAME = fake_ru.first_name()
-    LAST_NAME = fake_ru.last_name()
-    ADDRESS = random.choice(['Москва', 'Московская область']) + ', ' + 'ул. ' + fake_ru.street_name()
-    PHONE_NUMBER = random.randint(10000000000, 99999999999)
-    COMMENT = str(fake_ru.text())
-    METRO = ["Черкизовская", "Сокольники", "Медведково"]
-    DATE_OF_ORDER = ['15.08.2023', '14.09.2023', '01.10.2023']
-    RENT_PERIOD = ['сутки', 'двое суток', 'пятеро суток']
+    name: str
+    last_name: str
+    address: str
+    phone: str
+    comment: str
+
+    @staticmethod
+    def get_name():
+        return Faker('ru_Ru').first_name()
+
+    @staticmethod
+    def get_surmane():
+        return Faker('ru_Ru').last_name()
+
+    @staticmethod
+    def get_address():
+        return random.choice(['Москва', 'Московская область']) + ', ' + 'ул. ' + Faker('ru_Ru').street_name()
+
+    @staticmethod
+    def get_phone_number():
+        return '+7' + str(random.randint(1000000000, 9999999999))
+
+    @staticmethod
+    def get_text_comment():
+        return Faker('ru_Ru').text()
+
+
+class OrderInfo:
+    STATION = ["Черкизовская", "Сокольники", "Медведково"]
+    PERIOD_OF_RENT = 'двое суток'
+
+
+class Date:
+    @staticmethod
+    def get_today_date():
+        return date.today().strftime('%d.%m.%Y')
 
 
 class Titles:
@@ -48,8 +77,7 @@ class Questions:
 
 
 class IncorrectUser:
-    NAME = ['test', UserInfo.LAST_NAME, UserInfo.ADDRESS, UserInfo.PHONE_NUMBER, Titles.FIRST_NAME_ERROR]
-    LAST_NAME = [UserInfo.NAME, 'test', UserInfo.ADDRESS, UserInfo.PHONE_NUMBER, Titles.LAST_NAME_ERROR]
-    ADDRESS = [UserInfo.NAME, UserInfo.LAST_NAME, 'test', UserInfo.PHONE_NUMBER, Titles.ADDRESS_ERROR]
-    PHONE = [UserInfo.NAME, UserInfo.LAST_NAME, UserInfo.ADDRESS, 'test', Titles.PHONE_NUMBER_ERROR]
-
+    NAME = ['test', UserInfo.get_surmane(), UserInfo.get_address(), UserInfo.get_phone_number(), Titles.FIRST_NAME_ERROR]
+    SURNAME = [UserInfo.get_name(), 'test', UserInfo.get_address(), UserInfo.get_phone_number(), Titles.LAST_NAME_ERROR]
+    ADDRESS = [UserInfo.get_name(), UserInfo.get_surmane(), 'test', UserInfo.get_phone_number(), Titles.ADDRESS_ERROR]
+    PHONE = [UserInfo.get_name(), UserInfo.get_surmane(), UserInfo.get_address(), 'test', Titles.PHONE_NUMBER_ERROR]

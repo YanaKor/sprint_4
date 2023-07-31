@@ -1,6 +1,6 @@
 import allure
 
-from base.base_object import BaseObject
+from pages.base_page import BaseObject
 from support.assertions import Assertions
 from base.locators import MainPageLocators as Main
 from test_data.data import Questions
@@ -10,11 +10,6 @@ class MainPage(BaseObject, Assertions):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-
-    @allure.step('Подтверждение куки на странице')
-    def accept_cookies(self):
-        accept_cookies = self.is_present(Main.ACCEPT_COOKIES)
-        accept_cookies.click()
 
     @allure.step('Нажатие на лого Яндекса')
     def click_on_yandex_logo(self):
