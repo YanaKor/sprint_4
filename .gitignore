@@ -1,1 +1,6 @@
 .idea
+**/__pycache__/
+**/.pytest_cache
+venv
+allure_results
+**/geckodriver.log
