@@ -14,4 +14,5 @@ def setup():
     driver.get(url)
 
     yield driver
+
     driver.quit()

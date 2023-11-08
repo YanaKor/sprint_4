@@ -15,7 +15,7 @@ class MainPage(BaseObject, Assertions):
     def click_on_yandex_logo(self):
         self.click(Main.YANDEX_BUTTON)
 
-    @allure.step('Нажатие на лога Скутера')
+    @allure.step('Нажатие на лого Скутера')
     def click_on_scooter_logo(self):
         self.go_to_url('https://qa-scooter.praktikum-services.ru/order')
         self.click(Main.SCOOTER_BUTTON)

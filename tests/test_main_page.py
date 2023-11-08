@@ -6,13 +6,17 @@ from test_data.data import Titles
 
 class TestMainPage:
 
-    @allure.title('Проверка перехода на страницу Яндекс.Дзен по нажатию на лого Яндекса')
+    @allure.suite('Главная страница')
+    @allure.title('Переход между страницами')
+    @allure.description('Проверка перехода на страницу Яндекс.Дзен по нажатию на лого Яндекса')
     def test_transition_to_dzen_main_page(self, setup):
         main_page = MainPage(setup)
         main_page.click_on_yandex_logo()
         main_page.check_transition_to_dzen_main_page()
 
-    @allure.title('Проверка перехода на главную старницу по нажатию на лого Самоката')
+    @allure.suite('Главная страница')
+    @allure.title('Переход между страницами')
+    @allure.description('Проверка перехода на главную старницу по нажатию на лого Самоката')
     def test_transition_to_scooter_main_page(self, setup):
         main_page = MainPage(setup)
         main_page.click_on_scooter_logo()

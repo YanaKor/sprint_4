@@ -6,7 +6,9 @@ from pages.main_page import MainPage
 
 class TestQuestionsModule:
 
-    @allure.title('Проверка соответствия вопроса-ответа в блоке "Вопросы о важном"')
+    @allure.suite('Вопросы о важном')
+    @allure.title('Проверка выпадающего списка')
+    @allure.description('Проверка соответствия вопроса-ответа в блоке "Вопросы о важном"')
     @pytest.mark.parametrize('num', [i for i in range(8)])
     def test_answers_on_important_questions(self, setup, num):
         main_page = MainPage(setup)
